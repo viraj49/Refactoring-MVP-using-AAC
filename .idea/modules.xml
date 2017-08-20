@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Refactoring-MVP-using-AAC.iml" filepath="$PROJECT_DIR$/Refactoring-MVP-using-AAC.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvp-with-aac/mvp-with-aac.iml" filepath="$PROJECT_DIR$/mvp-with-aac/mvp-with-aac.iml" />
+      <module fileurl="file://$PROJECT_DIR$/mvp-without-aac/mvp-without-aac.iml" filepath="$PROJECT_DIR$/mvp-without-aac/mvp-without-aac.iml" />
+    </modules>
+  </component>
+</project>
