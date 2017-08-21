@@ -1,6 +1,5 @@
 package tank.viraj.with.aac
 
-import android.app.Application
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModel
@@ -11,12 +10,11 @@ import io.reactivex.schedulers.Schedulers
 /**
  * Created by Viraj Tank, 15-08-2017.
  */
-class MyPresenter(application: Application) : ViewModel() {
+class MyPresenter : ViewModel() {
 
     private var activity: MyActivity? = null
 
-    private var internetUtil = InternetUtil.Singleton.getInstance(application)
-    private var myDataSource = MyDataSource(internetUtil)
+    private var myDataSource = MyDataSource()
 
     private val compositeDisposable = CompositeDisposable()
 
@@ -73,7 +71,7 @@ class MyPresenter(application: Application) : ViewModel() {
     }
 
     private fun waitForInternet() {
-        internetUtil.observe(this.activity, Observer {
+        InternetUtil.observe(this.activity, Observer {
             status ->
             if (status ?: false) {
                 getData()

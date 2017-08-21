@@ -14,21 +14,13 @@ import android.net.NetworkInfo
 /**
  * Created by Viraj Tank, 15-08-2017.
  */
-class InternetUtil private constructor(private val application: Application) :
-        LiveData<Boolean>() {
+object InternetUtil : LiveData<Boolean>() {
 
+    private lateinit var application: Application
     private var broadcastReceiver: BroadcastReceiver? = null
 
-    object Singleton {
-        private var internetUtil: InternetUtil? = null
-
-        fun getInstance(application: Application): InternetUtil {
-            if (internetUtil == null) {
-                internetUtil = InternetUtil(application)
-            }
-
-            return internetUtil as InternetUtil
-        }
+    fun init(application: Application) {
+        this.application = application
     }
 
     fun isInternetOn(): Boolean {

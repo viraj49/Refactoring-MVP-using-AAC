@@ -10,14 +10,13 @@ import kotlinx.android.synthetic.main.activity.*
  */
 class MyActivity : LifecycleActivity() {
 
-    private lateinit var myPresenterFactory: MyPresenterFactory
+    private val myPresenterFactory = MyPresenterFactory()
     private lateinit var myPresenter: MyPresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity)
 
-        myPresenterFactory = MyPresenterFactory(application)
         myPresenter = ViewModelProviders.of(this, myPresenterFactory).get(MyPresenter::class.java)
 
         refresh_view.isEnabled = false

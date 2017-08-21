@@ -12,12 +12,11 @@ import kotlinx.android.synthetic.main.fragment.*
  */
 class MyFragment : Fragment() {
 
-    private lateinit var myPresenter: MyPresenter
+    private val myPresenter = MyPresenter()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         retainInstance = true
-        myPresenter = MyPresenter(activity.application)
     }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
@@ -28,6 +27,10 @@ class MyFragment : Fragment() {
     override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         refresh_view.isEnabled = false
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
     override fun onStart() {

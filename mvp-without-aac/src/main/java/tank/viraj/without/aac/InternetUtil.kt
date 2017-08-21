@@ -15,10 +15,15 @@ import io.reactivex.subjects.PublishSubject
 /**
  * Created by Viraj Tank, 15-08-2017.
  */
-class InternetUtil(private val application: Application) {
+object InternetUtil {
 
     private var broadcastReceiver: BroadcastReceiver? = null
     private val internetSubscription = PublishSubject.create<Boolean>()
+    private lateinit var application: Application
+
+    fun init(application: Application) {
+        this.application = application
+    }
 
     fun isInternetOn(): Boolean {
         val cm = application.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager

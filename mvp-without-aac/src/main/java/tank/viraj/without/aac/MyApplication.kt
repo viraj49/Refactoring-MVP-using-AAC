@@ -11,5 +11,6 @@ class MyApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         LeakCanary.install(this)
+        InternetUtil.init(this)
     }
 }

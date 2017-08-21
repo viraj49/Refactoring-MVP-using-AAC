@@ -1,6 +1,5 @@
 package tank.viraj.without.aac
 
-import android.app.Application
 import io.reactivex.Maybe
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -10,12 +9,10 @@ import io.reactivex.subjects.BehaviorSubject
 /**
  * Created by Viraj Tank, 15-08-2017.
  */
-class MyPresenter(application: Application) {
+class MyPresenter {
 
     private var view: MyFragment? = null
-
-    private var internetUtil = InternetUtil(application)
-    private var myDataSource = MyDataSource(internetUtil)
+    private var myDataSource = MyDataSource()
 
     private var myViewState = MyViewState()
     private val viewSubscription = BehaviorSubject.create<MyViewState>()!!
@@ -39,7 +36,7 @@ class MyPresenter(application: Application) {
     }
 
     fun unBind() {
-        internetUtil.stopWaitForInternet()
+        InternetUtil.stopWaitForInternet()
         viewSubscriptions.clear()
         this.view = null
     }
@@ -76,12 +73,12 @@ class MyPresenter(application: Application) {
     }
 
     private fun waitForInternet() {
-        viewSubscriptions.add(internetUtil.waitForInternet()
+        viewSubscriptions.add(InternetUtil.waitForInternet()
                 .observeOn(Schedulers.computation())
                 .subscribe({
                     status ->
                     if (status ?: false) {
-                        internetUtil.stopWaitForInternet()
+                        InternetUtil.stopWaitForInternet()
                         getData()
                     }
                 }))
